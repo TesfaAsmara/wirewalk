@@ -28,7 +28,7 @@ Let us establish some notation used in sections below:
   generic vertices of interest
 - Edge set is $E=\{(x,y):x,y \in V\}$
 - Graph $G$ is defined by a pair $(V,E)$
-- An adjacency matrix of $G$ is a matrix $A=[a_{xy}]_{N\times N}$ such
+- An adjacency matrix of $G$ is a matrix $A=[a_{xy}]_{N \times N}$ such
   that $a_{xy}=1$ if $(x,y) \in E$ otherwise $a_{xy}=0$.
 - A set of neighbors of vertex $x$ in graph $G$ is $N(x)$, namely
   $N(x)=\{y:(x,y) \in E\}$. Let $\lvert N(x)\rvert$ denote the number of
@@ -76,7 +76,7 @@ relative to their total number of neighbors, the more likely the random
 walker is to move from vertex $x$ to vertex $y$.
 
 5.  Hub Promoted Index
-    $$a_{xy} = \frac{2 \lvert N(x) \cap N(y) \rvert}{\min \{\lvert N(x) \rvert, \lvert N(y) \rvert\}}$$
+    $$a_{xy} = \frac{\lvert N(x) \cap N(y) \rvert}{\min \{\lvert N(x) \rvert, \lvert N(y) \rvert\}}$$
 
 This index measures the strength of the connection between vertices $x$
 and $y$ relative to the size of their respective sets of neighbors. The
@@ -86,7 +86,7 @@ random walker is to move from vertex $x$ to vertex $y$, as they have a
 strong connection relative to the size of their sets of neighbors.
 
 6.  Hub Depressed Index
-    $$a_{xy} = \frac{2 \lvert N(x) \cap N(y) \rvert}{\max \{\lvert N(x) \rvert, \lvert N(y) \rvert\}}$$
+    $$a_{xy} = \frac{\lvert N(x) \cap N(y) \rvert}{\max \{\lvert N(x) \rvert, \lvert N(y) \rvert\}}$$
 
 This index is the opposite of the Hub Promoted Index. The higher the
 intersection between the sets of neighbors of vertices $x$ and $y$
@@ -151,7 +151,7 @@ through an edge can be thought of as a measure of the “distance” or
 edge.
 
 Given a
-[`MetricWalk`](https://TesfaAsmara.github.io/metricwalk/core.html#metricwalk)
+[\[`MetricWalk`\](https://TesfaAsmara.github.io/metricwalk/core.html#metricwalk)](https://TesfaAsmara.github.io/metricwalk/core.html#metricwalk)
 object, these functions can be passed into `MetricWalk.fit()` as
 `MetricWalk.<func>` where `<func>` is one of `jaccard_coefficient`,
 `adamic_adar`, `resource_allocation`, `common_neighbors`,
@@ -187,7 +187,8 @@ for u, v in graph.edges:
 
 ## Parameters
 
-- `MetricWalk` constructor:
+- [`MetricWalk`](https://TesfaAsmara.github.io/metricwalk/core.html#metricwalk)
+  constructor:
   - `graph`: The first positional argument has to be a networkx graph.
     Node names must be all integers or all strings. On the output model
     they will always be strings.
@@ -195,7 +196,8 @@ for u, v in graph.edges:
   - `walk_length`: Number of nodes in each walk (default: 80)
   - `num_walks`: Number of walks per node (default: 10)
   - `workers`: Number of workers for parallel execution (default: 1)
-- `MetricWalk.fit` method: Returns a trained `gensim.Word2Vec` model
+- [`MetricWalk.fit`](https://TesfaAsmara.github.io/metricwalk/core.html#fit)
+  method: Returns a trained `gensim.Word2Vec` model
 
 ## How to use
 
@@ -222,5 +224,3 @@ model.wv.most_similar(2) # Output node names are always strings
 # Save model for later use
 # model.save(EMBEDDING_MODEL_FILENAME)
 ```
-
-    2
