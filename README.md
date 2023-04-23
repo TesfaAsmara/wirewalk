@@ -24,22 +24,23 @@ conda.
 
 Let us establish some notation used in sections below:
 
-- Vertex set is $V=\{1,2,...,x,y,...,N\}$ where $x$ and $y$ are some
+- Vertex set is $V = \{ 1,2,...,x,y,...,N \}$ where $x$ and $y$ are some
   generic vertices of interest
-- Edge set is $E=\{(x,y):x,y \in V\}$
+- Edge set is $E = \{ (x,y):x,y \in V \}$
 - Graph $G$ is defined by a pair $(V,E)$
-- An adjacency matrix of $G$ is a matrix $A=[a_{xy}]_{N \times N}$ such
-  that $a_{xy}=1$ if $(x,y) \in E$ otherwise $a_{xy}=0$.
+- An adjacency matrix of $G$ is a matrix $A={[a_{xy}]}_{N \times N}$
+  such that $a_{xy}=1$ if $(x,y) \in E$ otherwise $a_{xy}=0$.
 - A set of neighbors of vertex $x$ in graph $G$ is $N(x)$, namely
   $N(x)=\{y:(x,y) \in E\}$. Let $\lvert N(x)\rvert$ denote the number of
   elements in the set of neighbors $N(x)$.
 
-Then I am suggesting the generating the transition probability matrix by
+Then I suggest that you generate a transition probability matrix by
 normalizing a matrix where you compute a metric
-$m: V \times V \to \mathbb{R}$ across all pairs of nodes. You can then
-perform [DeepWalk](https://arxiv.org/abs/1403.6652) on the transformed
-graph. These initial measures are mainly local methods, but global and
-quasi-local methods can also be utilized.
+$m: V \times V \to \mathbb{R}$ between all pairs of nodes. You can then
+use that transition probability matrix to perform
+[DeepWalk](https://arxiv.org/abs/1403.6652) on the graph. These initial
+measures are mainly local methods, but global and quasi-local methods
+can also be utilized.
 
 1.  Common Neighbors $$a_{xy} = \lvert N(x) \cap N(y) \rvert$$
 
@@ -151,7 +152,7 @@ through an edge can be thought of as a measure of the “distance” or
 edge.
 
 Given a
-[\[`MetricWalk`\](https://TesfaAsmara.github.io/metricwalk/core.html#metricwalk)](https://TesfaAsmara.github.io/metricwalk/core.html#metricwalk)
+[`MetricWalk`](https://TesfaAsmara.github.io/metricwalk/core.html#metricwalk)
 object, these functions can be passed into `MetricWalk.fit()` as
 `MetricWalk.<func>` where `<func>` is one of `jaccard_coefficient`,
 `adamic_adar`, `resource_allocation`, `common_neighbors`,
@@ -204,6 +205,7 @@ for u, v in graph.edges:
 ``` python
 import networkx as nx
 from metricwalk.core import MetricWalk
+from joblib import Parallel, delayed
   
 
 # Create a graph
