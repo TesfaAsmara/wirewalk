@@ -24,15 +24,16 @@ conda.
 
 Let us establish some notation used in sections below:
 
-- Vertex set is $V = \{ 1,2,...,x,y,...,N \}$ where $x$ and $y$ are some
-  generic vertices of interest
-- Edge set is $E = \{ (x,y):x,y \in V \}$
+- Vertex set is $V = \lbrace 1,2,...,x,y,...,N \rbrace$ where $x$ and
+  $y$ are some generic vertices of interest
+- Edge set is $E = \lbrace (x,y):x,y \in V \rbrace$
 - Graph $G$ is defined by a pair $(V,E)$
-- An adjacency matrix of $G$ is a matrix $A={[a_{xy}]}_{N \times N}$
-  such that $a_{xy}=1$ if $(x,y) \in E$ otherwise $a_{xy}=0$.
+- An adjacency matrix of $G$ is a matrix
+  $A=\lbrack a_{xy} \rbrack_{N \times N}$ such that $a_{xy}=1$ if
+  $(x,y) \in E$ otherwise $a_{xy}=0$.
 - A set of neighbors of vertex $x$ in graph $G$ is $N(x)$, namely
-  $N(x)=\{y:(x,y) \in E\}$. Let $\lvert N(x)\rvert$ denote the number of
-  elements in the set of neighbors $N(x)$.
+  $N(x)=\lbrace y:(x,y) \in E \rbrace$. Let $\lvert N(x)\rvert$ denote
+  the number of elements in the set of neighbors $N(x)$.
 
 Then I suggest that you generate a transition probability matrix by
 normalizing a matrix where you compute a metric
@@ -77,7 +78,7 @@ relative to their total number of neighbors, the more likely the random
 walker is to move from vertex $x$ to vertex $y$.
 
 5.  Hub Promoted Index
-    $$a_{xy} = \frac{\lvert N(x) \cap N(y) \rvert}{\min \{\lvert N(x) \rvert, \lvert N(y) \rvert\}}$$
+    $$a_{xy} = \frac{\lvert N(x) \cap N(y) \rvert}{\min \lbrace \lvert N(x) \rvert, \lvert N(y) \rvert \rbrace}$$
 
 This index measures the strength of the connection between vertices $x$
 and $y$ relative to the size of their respective sets of neighbors. The
@@ -87,7 +88,7 @@ random walker is to move from vertex $x$ to vertex $y$, as they have a
 strong connection relative to the size of their sets of neighbors.
 
 6.  Hub Depressed Index
-    $$a_{xy} = \frac{\lvert N(x) \cap N(y) \rvert}{\max \{\lvert N(x) \rvert, \lvert N(y) \rvert\}}$$
+    $$a_{xy} = \frac{\lvert N(x) \cap N(y) \rvert}{\max \lbrace \lvert N(x) \rvert, \lvert N(y) \rvert \rbrace}$$
 
 This index is the opposite of the Hub Promoted Index. The higher the
 intersection between the sets of neighbors of vertices $x$ and $y$
@@ -140,7 +141,7 @@ be transferred from $x$ to $y$. The higher the maximum flow the more
 likely the random walker is to move towards edges that can transmit more
 information or resources between the two vertices.
 
-12. Maximum-Flow Minimum-Cost $$a_{xy} = \texttt{maxFlowMinCost}(x,y)$$
+12. Minimum-Cost Maximum-Flow $$a_{xy} = \texttt{minCostMaxFlow}(x,y)$$
 
 This measure considers the cost of sending flow through the edges, in
 addition to the capacity constraints. The minimum-cost maximum flow
@@ -167,7 +168,7 @@ object, these functions can be passed into `MetricWalk.fit()` as
   non-parallel on Windows pass `workers=1` in the MetricWalk’s
   constructor.
 - Note that `max_flow` and `max_flow_min_cost` have a runtime of
-  $O(n^4 \sqrt{m})$; parallelization has been incorporated where
+  $O(N^4 \sqrt{E})$; parallelization has been incorporated where
   applicable throughout to alleviate the expense of this methodology.
 - Moreover, in order to use the `max_flow` and `max_flow_min_cost`
   transformations, you must specify a `capacity` attribute on the edges
@@ -205,8 +206,6 @@ for u, v in graph.edges:
 ``` python
 import networkx as nx
 from metricwalk.core import MetricWalk
-from joblib import Parallel, delayed
-  
 
 # Create a graph
 graph = nx.fast_gnp_random_graph(n=100, p=0.5)
