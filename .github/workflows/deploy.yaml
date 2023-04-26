@@ -11,10 +11,4 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-    - name: Update apt cache and install joblib
-      run: |
-        pip install joblib==1.2.0
-        pip show joblib
-    - name: Deploy to GitHub Pages
-      uses: fastai/workflows/quarto-ghp@master
+    steps: [uses: fastai/workflows/quarto-ghp@master]
