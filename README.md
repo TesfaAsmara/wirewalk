@@ -60,8 +60,8 @@ $$P(c_i =x|c_{i-1} =y)= \begin{cases}
          \end{cases}
 $$
 
-where $\pi_xy$ is the unnormalized transition probability between nodes
-$x$ and $y$, and $Z$ is the normalizing constant.
+where $\pi_{xy}$ is the unnormalized transition probability between
+nodes $x$ and $y$, and $Z$ is the normalizing constant.
 
 ## Search Bias $\pi$
 
@@ -235,6 +235,7 @@ for u, v in graph.edges:
     Node names must be all integers or all strings. On the output model
     they will always be strings.
   - `dimensions`: Embedding dimensions (default: 128)
+  - `window`: Window size (default: 10)
   - `walk_length`: Number of nodes in each walk (default: 80)
   - `num_walks`: Number of walks per node (default: 10)
   - `workers`: Number of workers for parallel execution (default: 1)
@@ -250,10 +251,10 @@ from metricwalk.core import MetricWalk
 # Create a graph
 graph = nx.fast_gnp_random_graph(n=100, p=0.5)
 
-# Precompute probabilities and generate walks - **ON WINDOWS ONLY WORKS WITH workers=1**
+# Instantiate a MetricWalk object - **ON WINDOWS ONLY WORKS WITH workers=1**
 metricWalk = MetricWalk(graph, dimensions = 128, window = 10, walk_length = 80, num_walks = 10, workers = 1)
 
-# Embed nodes using preferential attachment
+# Precompute probabilities using preferential attachment, generate walks, and embed nodes
 model = metricWalk.fit(metricWalk.preferential_attachment)
 
 # Look for most similar nodes
