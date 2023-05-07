@@ -29,7 +29,7 @@ from wirewalk.core import WireWalk
 from wirewalk.functions import jaccard_coefficient, max_flow
 
 # Create a graph
-graph = nx.fast_gnp_random_graph(n=100, p=0.5)
+graph = nx.fast_gnp_random_graph(n=10, p=0.5)
 
 # Instantiate a WireWalk object
 wireWalk = WireWalk(graph, dimensions = 128, window = 10, walk_length = 80, num_walks = 10, workers = 1)
@@ -37,9 +37,10 @@ wireWalk = WireWalk(graph, dimensions = 128, window = 10, walk_length = 80, num_
 # Compute transition probabilities using jaccard coefficient transformation, generate walks, and embed nodes
 model = wireWalk.fit(jaccard_coefficient)
 
-
-
-nx.set_edge_attributes(G, nx.get_edge_attributes(G, "weight"), "capacity")
+# **MAX_FLOW and MIN_COST_MAX_FLOW ONLY WORK WITH GIVEN capacity**
+# If weight exists, then  
+# nx.set_edge_attributes(graph, nx.get_edge_attributes(graph, "weight"), "capacity").
+# Otherwise,
+nx.set_edge_attributes(graph, 1, "capacity")
 model = wireWalk.fit(max_flow)
-
 ```
