@@ -22,21 +22,21 @@ You will need
 
 I highly recommend installing an
 [Anaconda](https://www.anaconda.com/distribution/#download-section)
-environment. Future versions of MetricWalk will be available on PyPI and
+environment. Future versions of WireWalk will be available on PyPI and
 conda.
 ## How to use
 
 ``` python
 import networkx as nx
-from metricwalk.core import WireWalk
-from metricwalk.functions import jaccard_coefficient
+from wirewalk.core import WireWalk
+from wirewalk.functions import jaccard_coefficient
 
 # Create a graph
 graph = nx.fast_gnp_random_graph(n=100, p=0.5)
 
 # Instantiate a WireWalk object
-metricWalk = WireWalk(graph, dimensions = 128, window = 10, walk_length = 80, num_walks = 10, workers = 1)
+wireWalk = WireWalk(graph, dimensions = 128, window = 10, walk_length = 80, num_walks = 10, workers = 1)
 
 # Precompute probabilities using preferential attachment, generate walks, and embed nodes
-model = metricWalk.fit(jaccard_coefficient)
+model = wireWalk.fit(jaccard_coefficient)
 ```
