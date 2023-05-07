@@ -9,6 +9,7 @@ __all__ = ['max_flow', 'min_cost_max_flow', 'levenshtein', 'jaccard_coefficient'
 import numpy as np
 import networkx as nx
 import math
+import editdistance
 
 
 def max_flow(G, current_node, destination):
