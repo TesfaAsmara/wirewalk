@@ -17,7 +17,7 @@ format:
 website:
   title: "metricwalk"
   site-url: "https://TesfaAsmara.github.io/metricwalk"
-  description: "python3 implementation of a spatial graph embedding algorithm"
+  description: "python3 implementation of the wirewalk algorithm"
   twitter-card: true
   open-graph: true
   repo-branch: master
