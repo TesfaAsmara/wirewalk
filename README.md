@@ -1,5 +1,5 @@
 # WireWalk
-Python3 Implementation of the WireWalk Algorithm by [Tesfa Asmara, et. al.](tesfaasmara.com). Wire Before You Walk. T. Asmara, D. Bhaskar, I. Adelstein, S. Krishnaswamy, M. Perlmutter. In proceedings for Asilomar 2023.
+Python3 Implementation of the WireWalk Algorithm by [Tesfa Asmara, et. al.](tesfaasmara.com) Wire Before You Walk. T. Asmara, D. Bhaskar, I. Adelstein, S. Krishnaswamy, M. Perlmutter. In proceedings for Asilomar 2023.
 # Asilomar 2023 Proceedings
 
 To replicate the results, please see the instructions in the [Asilomar_2023.ipynb](https://github.com/TesfaAsmara/wirewalk/blob/main/Asilomar_2023.ipynb) file.
