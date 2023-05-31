@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "core.html",
+    "href": "core.html",
+    "title": "core",
+    "section": "",
+    "text": "source\n\ngenerate_walks_for_node\n\n generate_walks_for_node (node, num_walks, walk_length, probs)\n\n\nsource\n\n\nresource_allocation\n\n resource_allocation (G, current_node, destination, num_jobs=-1)\n\n\nsource\n\n\nadamic_adar\n\n adamic_adar (G, current_node, destination)\n\n\nsource\n\n\ntversky\n\n tversky (G, current_node, destination)\n\n\nsource\n\n\nsorenson_index\n\n sorenson_index (G, current_node, destination)\n\n\nsource\n\n\nsalton_index\n\n salton_index (G, current_node, destination)\n\n\nsource\n\n\nhub_depressed\n\n hub_depressed (G, current_node, destination)\n\n\nsource\n\n\nhub_promoted\n\n hub_promoted (G, current_node, destination)\n\n\nsource\n\n\npreferential_attachment\n\n preferential_attachment (G, current_node, destination)\n\n\nsource\n\n\nlhn_index\n\n lhn_index (G, current_node, destination)\n\n\nsource\n\n\ncommon_neighbors\n\n common_neighbors (G, current_node, destination)\n\n\nsource\n\n\njaccard_coefficient\n\n jaccard_coefficient (G, current_node, destination)\n\n\nsource\n\n\nlevenshtein\n\n levenshtein (G, current_node, destination)\n\n\nsource\n\n\nmin_cost_max_flow\n\n min_cost_max_flow (G, current_node, destination)\n\n\nsource\n\n\nmax_flow\n\n max_flow (G, current_node, destination)\n\n\nsource\n\n\nWireWalk\n\n WireWalk (graph:networkx.classes.graph.Graph, dimensions:int=128,\n           window:int=10, walk_length:int=80, num_walks:int=10,\n           workers:int=1)\n\nInitialize self. See help(type(self)) for accurate signature."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "wirewalk",
+    "section": "",
+    "text": "Wire Before You Walk. T. Asmara, D. Bhaskar, I. Adelstein, S. Krishnaswamy, M. Perlmutter. In proceedings for Asilomar 2023."
+  },
+  {
+    "objectID": "index.html#install",
+    "href": "index.html#install",
+    "title": "wirewalk",
+    "section": "Install",
+    "text": "Install\npip install wirewalk\n\nPrerequisites\nYou will need\n\nPython3\nNetworkx\nNumpy\nGensim\neditdistance\n\nI highly recommend installing an Anaconda environment. Future versions of WireWalk will be available on PyPI and conda."
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "wirewalk",
+    "section": "How to use",
+    "text": "How to use\nimport networkx as nx\nfrom wirewalk.core import WireWalk, jaccard_coefficient, max_flow\n\n# Create a graph\ngraph = nx.fast_gnp_random_graph(n=10, p=0.5)\n\n# Instantiate a WireWalk object\nwireWalk = WireWalk(graph, dimensions = 128, window = 10, walk_length = 80, num_walks = 10, workers = 1)\n\n# Compute transition probabilities using jaccard coefficient transformation, generate walks, and embed nodes\nmodel = wireWalk.fit(jaccard_coefficient)\n\n# **MAX_FLOW and MIN_COST_MAX_FLOW ONLY WORK WITH GIVEN capacity**\n# If weight exists, then  \n# nx.set_edge_attributes(graph, nx.get_edge_attributes(graph, \"weight\"), \"capacity\").\n# Otherwise,\nnx.set_edge_attributes(graph, 1, \"capacity\")\nmodel = wireWalk.fit(max_flow)"
+  }
+]
